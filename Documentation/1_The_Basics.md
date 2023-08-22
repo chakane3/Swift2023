@@ -1,6 +1,6 @@
 # The Basics
 
-Swift is mainly used for any device running on MacOSX. This languaged is derived from C/Objective-C. Many things about C you will find in Swift. One thing about Swift that is very important is that it uses <b>Optional Types<b>. These types handle the absence of values. Informally an optional can be read as: There "might" be a value in this veriable. So for example if you set x = y?. The "?" will state that "y" may or may not have a value. It it does not have a value it returns "nil". <b>This works for any variable of any type.<b> Swift is "type-safe", meaning the language will help you not make silly mistakes. For example if a variable requires a String, the type safety feature of this language will not let you pass an Int. <br>
+Swift is mainly used for any device running on MacOSX. This languaged is derived from C/Objective-C. Many things about C you will find in Swift. One thing about Swift that is very important is that it uses <b>Optional Types<b>. These types handle the absence of values. Informally an optional can be read as: There "might" be a value in this veriable. So for example if you set x = y?. The "?" will state that "y" may or may not have a value. It it does not have a value it returns "nil". <b>This works for any variable of any type.</b> Swift is "type-safe", meaning the language will help you not make silly mistakes. For example if a variable requires a String, the type safety feature of this language will not let you pass an Int. <br>
 
 ## Constants vs Variables
 ```swift
@@ -88,3 +88,39 @@ print("Status msg is \(http200Status.description)")
 ```
 
 ## Optionals
+Optionals expresses 2 possibilities:
+    <ul>
+        <li>Either there is a value and you can unwrap the optional to access the value</li>
+        <li>There is no value at all, handle however you want</li>
+    <ul>
+
+Lets take a look at this example:
+```swift
+let possibleNumber = "123"
+let convertedNumber = Int(possibleNumber)
+```
+Here, convertedNumber is of type Int?. The ```?``` states an optional
+
+
+## If Statements and Forced Unwrapping
+We should use if statements to figure out if an optional contains a value. Then when we establish that our variable has a value we need to access the value by appending an ```!```.
+```swift
+if convertedNumber != nil {
+    print("convertedNumber contains a value: \(convertedNumber!)")
+}
+```
+
+## Optional Binding
+Optional binding is used to figure out if an optional has a value, if so, we make it a temp property. 
+
+
+```swift
+if let actualNumber = Int(possibleNumber) {
+    print("The string \"\(possibleNumber)\" has an integer value of \(actualNumber)")
+} else {
+    print("The string \"\(possibleNumber)\" couldent be converted to an integer")
+}
+```
+
+This can be read as: "If the optional Int returned by Int(possibleNumber) contains a value, set a new constant called actualNumber to the value contained in the optional". Therefore in this case we dont need to use a ```!```.
+
